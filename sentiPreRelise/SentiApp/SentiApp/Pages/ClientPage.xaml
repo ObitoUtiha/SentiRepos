@@ -1,0 +1,69 @@
+﻿<Page x:Class="SentiApp.Pages.ClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SentiApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+        <RowDefinition Height="50"/>
+        <RowDefinition/>
+        <RowDefinition Height="50"/>
+    </Grid.RowDefinitions>
+
+        <DataGrid IsReadOnly="True" CanUserAddRows="False"  AutoGenerateColumns="False" Grid.Row="1" x:Name="DGridClients">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding ContactInfo}" Width="1.3*"/>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}" Width="1.2*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
+                <DataGridTemplateColumn x:Name="ColumnDel">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnDel" Visibility="{Binding ButtonDelVisibility}" Click="BtnDel_Click" Content="Удалить"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="ColumnEdit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnChange" Click="BtnChange_Click" Content="Редактировать"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
+            <TextBox
+                          x:Name="SearchTb"
+                          TextChanged="SearchTb_TextChanged"
+                          MaxWidth="130"
+                          VerticalAlignment="Bottom"
+                          Margin="30,0,0,0"
+                          materialDesign:HintAssist.Hint="Поиск по ФИО"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+            <StackPanel Margin="30,0,0,0"  VerticalAlignment="Center">
+                <!--<ComboBox
+                          VerticalAlignment="Bottom"
+                          MinWidth="72"
+                          materialDesign:HintAssist.FloatingOffset="0, -24"
+                          materialDesign:HintAssist.FloatingScale="1.5"
+                          materialDesign:HintAssist.Hint="Фильтрация по ФИО"
+                          ItemsSource="{Binding LongIntegerList}"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" />-->
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Margin="0,0,20,0" Content="Добавить" Width="150" x:Name="BtnAdd" Click="BtnAdd_Click"/>
+    </StackPanel>
+    </Grid>
+</Page>

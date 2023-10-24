@@ -1,0 +1,29 @@
+﻿<Page x:Class="SentiApp.Pages.GraphPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"  
+      xmlns:local="clr-namespace:SentiApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GraphPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <DatePicker SelectedDateChanged="DateDayPicker_SelectedDateChanged" x:Name="DateDayStartPicker" Margin="10,0,40,0" Width="150"></DatePicker>
+            <DatePicker SelectedDateChanged="DateDayEndPicker_SelectedDateChanged" x:Name="DateDayEndPicker" Margin="10,0,40,0" Width="150"></DatePicker>
+            <ComboBox SelectionChanged="CmbPicker_SelectionChanged" x:Name="CmbPicker" Width="150"></ComboBox>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" x:Name="ChildPnl">
+            <WindowsFormsHost Name="chartHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </StackPanel>
+        <Button x:Name="ResultBtn" Grid.Row="2" Width="150" Content="Рассчитать" Click="ResultBtn_Click"></Button>
+    </Grid>
+</Page>

@@ -1,0 +1,96 @@
+﻿<Page x:Class="SentiApp.Pages.RegistrationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SentiApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegistrationsPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Center" Grid.Row="0" Orientation="Horizontal">
+                <DatePicker
+                          Text="{Binding JustificationDate, StringFormat='Justification Date: \{0:dd-MMMM-yy hh:mm\}'}"
+                          SelectedDateFormat="Short"
+                          x:Name="ClientDeta"
+                          SelectedDateChanged="ClientDeta_SelectedDateChanged"
+                          VerticalAlignment="Bottom"
+                          Width="120"
+                          materialDesign:HintAssist.Hint="Поиск по дате"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                    <DatePicker.Resources>
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="IsReadOnly" Value="True"/>
+                        </Style>
+                    </DatePicker.Resources>
+
+                </DatePicker>
+
+                <TextBox
+                          x:Name="SearchTb"
+                          TextChanged="SearchTb_TextChanged"
+                          MaxWidth="130"
+                          VerticalAlignment="Bottom"
+                          Margin="30,0,0,0"
+                          materialDesign:HintAssist.Hint="Поиск по имени"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <StackPanel Margin="30,0,0,0"  VerticalAlignment="Bottom">
+                    <ComboBox
+                          SelectedIndex="1"
+                          x:Name="FiltrCmb"
+                          SelectionChanged="FiltrCmb_SelectionChanged"
+                          VerticalAlignment="Bottom"
+                          MinWidth="72"
+                          materialDesign:HintAssist.FloatingOffset="0, -24"
+                          materialDesign:HintAssist.FloatingScale="1"
+                          materialDesign:HintAssist.Hint="Фильтрация по статусу"
+                          ItemsSource="{Binding LongIntegerList}"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"  Background="#cccccc" Height="420"  MinWidth="600"  x:Name="RegisterList" materialDesign:ListBoxItemAssist.ShowSelection="False"  Style="{Binding}" >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding RegistrationColor}" MinWidth="550" BorderThickness="1" BorderBrush="Black" CornerRadius="10">
+                                <StackPanel>
+                                    <TextBlock Margin="5,0,0,0" HorizontalAlignment="Center"  Style="{StaticResource MainTxt}" Text="Клиент:" />
+                                    <TextBlock HorizontalAlignment="Center"   Style="{StaticResource MainTxt}" Text="{Binding Registration.Client.FullName}"/>
+                                    <TextBlock Margin="5,0,0,0" HorizontalAlignment="Center"  Text="" />
+                                    <TextBlock Margin="5,0,0,0"  HorizontalAlignment="Center"   Style="{StaticResource MainTxt}" Text="Дата записи:"/>
+                                    <TextBlock HorizontalAlignment="Center"   Style="{StaticResource MainTxt}" Text="{Binding Registration.DateTime, StringFormat=\{0:g\}, ConverterCulture=ru}"/>
+                                    <TextBlock Margin="5,0,0,0" HorizontalAlignment="Center"  Text="" />
+                                    <TextBlock HorizontalAlignment="Center"   Style="{StaticResource MainTxt}" Text="Статус записи:"/>
+                                    <TextBlock HorizontalAlignment="Center"   Style="{StaticResource MainTxt}" Text="{Binding Registration.Status}"/>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <Button Visibility="{Binding Registration.ButtonVisibility}" Click="BtnClose_Click"  x:Name="BtnClose" Margin="0,10,0,10" Height="30" Width="100" Content="Закрыть"></Button>
+                                        <Button Visibility="{Binding Registration.ButtonVisibilityRole}" Click="BtnChange_Click"  x:Name="BtnChange" Margin="10,10,0,10" Height="30" Width="130" Content="Редактировать"></Button>
+                                        <Button  Click="BtnPrint_Click" Visibility="{Binding Registration.ButtonVisibility}" x:Name="BtnPrint" Margin="10,10,0,10" Height="30" Width="130" Content="Печать"></Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <TextBlock x:Name="NullTb" Text="Нет записей" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MainTxt}" Visibility="Hidden"></TextBlock>
+            <Button Visibility="{Binding Registration.ButtonVisibilityRole}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="130" Margin="10" Content="Добавить" x:Name="AddBtn" Click="AddBtn_Click"></Button>
+        </Grid>
+    </Grid>
+</Page>

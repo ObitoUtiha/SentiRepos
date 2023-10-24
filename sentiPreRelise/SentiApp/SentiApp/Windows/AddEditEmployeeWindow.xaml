@@ -1,0 +1,47 @@
+﻿<Window x:Class="SentiApp.Windows.AddEditEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:SentiApp.Windows"
+        mc:Ignorable="d"
+        Title="AddEditEmployeeWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Center">
+            <Image   Margin="10,0,0,0" Source="../Resources/SentiLogo.png" VerticalAlignment="Center" HorizontalAlignment="Left" Width="70" Height="60"></Image>
+            <TextBlock Style="{StaticResource MainTxt}" Text="Центр психологической помощи Senti" HorizontalAlignment="Center" VerticalAlignment="Center"  ></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Right"  Margin="0,0,10,0" Text="Фамилия:"></TextBlock>
+            <TextBlock Grid.Row="1" FontSize="15" Margin="0,0,10,0" VerticalAlignment="Center" TextAlignment="Right" Text="Имя:"></TextBlock>
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" FontSize="15" Margin="0,0,10,0" TextAlignment="Right" Text="Отчество:"></TextBlock>
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" FontSize="15" Margin="0,0,10,0" TextAlignment="Right" Text="Статус:"></TextBlock>
+            <TextBlock Grid.Row="4" VerticalAlignment="Center" FontSize="15" Margin="0,0,10,0" TextAlignment="Right" Text="Дата принятия:"></TextBlock>
+
+            <TextBox x:Name="LastNameTb" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></TextBox>
+            <TextBox x:Name="FirstNameTb" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></TextBox>
+            <TextBox x:Name="PatronymicTb" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></TextBox>
+            <ComboBox x:Name="StatusCmb" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></ComboBox>
+            <DatePicker x:Name="AcceptanceDatePicker" Grid.Row="4"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"></DatePicker>
+            <Button Grid.ColumnSpan="2" Grid.Row="5" Width="200" Content="Сохранить" x:Name="SaveBtn" Click="SaveBtn_Click"></Button>
+        </Grid>
+    </Grid>
+</Window>
